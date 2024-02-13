@@ -1,23 +1,71 @@
-import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 
-const green = '#495E57';
-const yellow = '#F4CE14';
+const menuItemsToDisplay = [
+  { name: 'Hummus', id: '1A' },
+  { name: 'Moutabal', id: '2B' },
+  { name: 'Falafel', id: '3C' },
+  { name: 'Marinated Olives', id: '4D' },
+  { name: 'Kofta', id: '5E' },
+  { name: 'Eggplant Salad', id: '6F' },
+  { name: 'Lentil Burger', id: '7G' },
+  { name: 'Smoked Salmon', id: '8H' },
+  { name: 'Kofta Burger', id: '9I' },
+  { name: 'Turkish Kebab', id: '10J' },
+  { name: 'Fries', id: '11K' },
+  { name: 'Buttered Rice', id: '12L' },
+  { name: 'Bread Sticks', id: '13M' },
+  { name: 'Pita Pocket', id: '14N' },
+  { name: 'Lentil Soup', id: '15O' },
+  { name: 'Greek Salad', id: '16Q' },
+  { name: 'Rice Pilaf', id: '17R' },
+  { name: 'Baklava', id: '18S' },
+  { name: 'Tartufo', id: '19T' },
+  { name: 'Tartufo', id: '20U' },
+  { name: 'Tiramisu', id: '21V' },
+  { name: 'Panna Cotta', id: '22W' },
+];
 
-const menuItemsToDisplay = ['Hummus \n Moutabal \n Falafel \n Marinated Olives \n Kofta \n Eggplant Salad \n Lentil Burger \n Smoked Salmon \n Kofta Burger \n Turkish Kebab \n Fries \n Buttered Rice \n Bread Sticks \n Pita Pocket \n Lentil Soup \n Greek Salad \n Rice Pilaf \n Baklava \n Tartufo \n Tiramisu \n Panna Cotta',];
+const Item = ({ name }) => (
+  <View style={menuStyles.innerContainer}>
+    <Text style={menuStyles.itemText}>{name}</Text>
+  </View>
+);
 
-const menuItems = () => {
-    return (
-        <View style = {{flex: 0.75,}}>
-            <ScrollView style = {{}}>
-                <Text style = {{color: 'white', textAlign: 'center', fontSize: 36, margin: 10,}}>
-                    Menu
-                </Text>
-                <Text style = {{color: yellow, textAlign: 'center', fontSize: 30,
-             padding: 10,}}>{menuItemsToDisplay[0]}</Text>
-            </ScrollView>
-        </View>
-    )
-}
 
-export default menuItems;
+const MenuItems = () => {
+  const renderItem = ({ item }) => <Item name={item.name} />;
+
+  return (
+    <View style={menuStyles.container}>
+      <Text style={menuStyles.headerText}>View Menu</Text>
+      <FlatList
+        indicatorStyle='white'
+        data={menuItemsToDisplay}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}></FlatList>
+    </View>
+  );
+};
+
+const menuStyles = StyleSheet.create({
+  container: {
+    flex: 0.75,
+  },
+  innerContainer: {
+    paddingHorizontal: 40,
+    paddingVertical: 20,
+    backgroundColor: '#495E57',
+  },
+  headerText: {
+    color: 'white',
+    fontSize: 40,
+    flexWrap: 'wrap',
+    textAlign: 'center',
+  },
+  itemText: {
+    color: '#F4CE14',
+    fontSize: 36,
+  },
+});
+
+export default MenuItems;

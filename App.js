@@ -15,9 +15,9 @@ export default function App() {
           backgroundColor: '#495E57',
         }}>
         <LittleLemonHeader />
-        {/* <MenuItems/> */}
-        <WelcomeScreen /> 
-        <LittleLemonFooter/>
+        <MenuItems/>
+        {/* <WelcomeScreen />  */}
+        {/* <LittleLemonFooter/> */}
       </View>
     </>
   );
